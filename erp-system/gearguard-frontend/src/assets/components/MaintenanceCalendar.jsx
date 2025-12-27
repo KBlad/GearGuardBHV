@@ -7,34 +7,25 @@ const MaintenanceCalendar = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    // Fetch from your Spring Boot API
-    fetch('/api/maintenance-requests')
-      .then(res => res.json())
-      .then(data => {
-        // Filter for Preventive maintenance requests only 
-        const preventiveRequests = data.filter(req => req.type === 'Preventive')
-          .map(req => ({
-            id: req.id,
-            title: req.subject, // 
-            start: req.scheduledDate, // 
-            allDay: true
-          }));
-        setEvents(preventiveRequests);
-      });
+    // Fetch logic here...
+    // (Keep your existing fetch logic)
   }, []);
 
   const handleDateClick = (arg) => {
-    // Logic to open a modal to schedule a new request 
     alert('Create new maintenance for: ' + arg.dateStr);
   };
 
   return (
-    <FullCalendar
-      plugins={[dayGridPlugin, interactionPlugin]}
-      initialView="dayGridMonth"
-      events={events}
-      dateClick={handleDateClick}
-    />
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}> {/* Centering Wrapper */}
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        events={events}
+        dateClick={handleDateClick}
+        height="auto" /* Crucial: Prevents boxes from stretching vertically */
+        aspectRatio={1.5} /* Optional: Controls width-to-height ratio */
+      />
+    </div>
   );
 };
 
