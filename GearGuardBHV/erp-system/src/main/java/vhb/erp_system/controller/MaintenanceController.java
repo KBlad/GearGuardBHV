@@ -47,4 +47,13 @@ public class MaintenanceController {
     public Equipment getEquipmentDetails(@PathVariable Long id) {
         return equipmentRepo.findById(id).orElseThrow();
     }
+    @PostMapping("/requests")
+    public MaintenanceRequest createRequest(@RequestBody MaintenanceRequest request) {
+        return service.createRequest(request);
+    }
+    @GetMapping("/equipment")
+    public List<Equipment> getAllEquipment() {
+        return equipmentRepo.findAll();
+    }
+
 }

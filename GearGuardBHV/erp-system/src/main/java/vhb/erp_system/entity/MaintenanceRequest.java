@@ -50,4 +50,12 @@ public class MaintenanceRequest {
     public void setStage(Stage newStage) {
         this.stage = newStage;
     }
+
+    public void setEquipment(Equipment equip) {
+        this.equipment = equip;
+    }
+
+    public Stage getStage() {
+        return this.stage;
+    }
 }

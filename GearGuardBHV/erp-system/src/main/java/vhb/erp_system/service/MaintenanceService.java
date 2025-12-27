@@ -18,6 +18,20 @@ public class MaintenanceService {
             Equipment eq = equipmentRepo.findById(req.getEquipment().getId()).orElseThrow();
             req.setAssignedTeam(eq.getMaintenanceTeam());
         }
+        if (req.getEquipment() != null && req.getEquipment().getId() != null) {
+            Equipment equipment = equipmentRepo.findById(req.getEquipment().getId())
+                    .orElseThrow(() -> new RuntimeException("Equipment not found"));
+
+            // 1. Link the real equipment object
+            req.setEquipment(equipment);
+
+            // 2. Auto-assign the team (The "Magic")
+            if (equipment.getMaintenanceTeam() != null) {
+                req.setAssignedTeam(equipment.getMaintenanceTeam());
+            }
+        }
+        if (req.getStage() == null) req.setStage(Stage.NEW);
+
         return requestRepo.save(req);
     }
     public MaintenanceRequest update(Long requestId, Stage newStage){
