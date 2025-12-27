@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +65,40 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+
+/* 1. RESET DEFAULT VITE STYLES */
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  /* Set your Odoo variables globally here if you want, or keep them in App.css */
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. FORCE FULL WIDTH ON BODY */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: block; /* Remove 'flex' if it was there by default */
+  background-color: #f3f4f6; /* Match your Odoo background */
+}
+
+/* 3. FORCE ROOT TO TAKE FULL SPACE */
+/* This is likely what was causing the "Left Sided" issue */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Reset default text centering */
 }
